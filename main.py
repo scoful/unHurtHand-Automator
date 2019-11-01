@@ -15,7 +15,7 @@ if __name__ == '__main__':
     # 安卓本地运行
     # device = 'http://0.0.0.0:7912'
     # pc运行,adb devices 命令后得出的结果
-    device = '53aac21a'
+    device = '53aac21b'
 
     # 是否有app九宫锁
     is_app_lock = False
