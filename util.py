@@ -1,6 +1,7 @@
 import time
 import datetime
+import logging
 
 def short_wait():
-    time.sleep(0.5)
+    time.sleep(1)
 
