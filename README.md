@@ -35,13 +35,14 @@
 ### pc端
 
 - 如果你没有安装 Python，请先安装 [Python3.*](https://www.python.org/downloads/) 以上版本
+
 - 如果你没有安装 adb，请先安装，以下是adb官方介绍
   - Android 调试桥 (adb)，https://developer.android.google.cn/studio/command-line/adb
   - 官方下载地址，[adb下载](https://developer.android.google.cn/studio/releases/platform-tools.html)，下载后，把解压后的文件夹的路径添加到环境变量的 `Path` 中，方便全局调用
 
 - 以上都安装后，打开 `CMD` 或者 `Powershell` 或是其他任何终端，执行以下命令，安装python依赖：
 
-  ```
+  ```python
   # 打开终端
   # 以下是一整行
   python -m pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple/
@@ -58,26 +59,24 @@
 
 - adb 连接后，执行以下命令在手机安装 ATX 应用，包含httprpc服务的apk到手机，`atx-agent, minicap, minitouch`，具体介绍可以看，[uiautomator2项目](https://github.com/openatx/uiautomator2)
 
-```python
-python3 -m uiautomator2 init
-```
+  ```python
+  python3 -m uiautomator2 init
+  ```
 
 - 在手机上打开 ATX ，点击 `启动 UIAutomator` 选项，确保 UIAutomator 是运行的。
 
 - 如何运行这个脚本:
 
-```
-# 在该项目的文件夹根目录打开
-python main.py
-```
+  ```python
+  # 在该项目的文件夹根目录打开
+  python main.py
+  ```
 
 - 能动就说明能成功运行，接下来你可以退出脚本(`Ctrl`+`C` 或者 关掉终端窗口)，在 `main.py` 中修改你的配置。
 
 ### 安卓端
 
-待续
-
-
+待续，在试验用哪个app比较方便运行python脚本，目前收集有，qpython3L，termux，Pydroid 3，目前只成功在termux上运行，不过比较复杂。
 
 ## 说明
 
@@ -85,7 +84,9 @@ python main.py
 
 - device
 
-  在pc上通过`adb device`来获得，在安卓上写死：`http://0.0.0.0:7912`
+  在pc上通过`adb device`来获得
+
+  在安卓上写死：`http://0.0.0.0:7912`
 
 - 选择运行的任务，true表示运行，一次跑一个任务
   - is_ant_forest_on
