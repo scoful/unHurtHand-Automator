@@ -34,7 +34,7 @@ def ant_forest(self):
         logging.error("蚂蚁森林搜索结果的进入字样定位不到")
         return
     # 收集自己的能量
-    # TODO 验证一下，到底多少个按钮才需要反复几次，是否可以做成按需判断
+    # TODO 验证一下，到底多少个按钮才需要反复几次，是否可以做成按需判断,再一个是为啥老是莫名其妙进入公益林和合种？
     for i in range(3):
         collect_energy(self)
     # 收集完滚动到底部，点击查看更多好友，进入
@@ -65,25 +65,25 @@ def collect_energy(self):
                 if self.d.xpath('//*[@resource-id="J_barrier_free"]/android.widget.Button[' + str(m) + ']').exists:
                     self.d.xpath('//*[@resource-id="J_barrier_free"]/android.widget.Button[' + str(m) + ']').click()
                     short_wait()
+                    # 2019年双11活动入口，硬编码关闭
+                    if self.d.xpath('//*[@text="关闭蒙层"]').exists:
+                        short_wait()
+                        self.d.xpath('//*[@text="关闭蒙层"]').click()
+                    # 如果不小心进入了公益林，硬编码关闭
+                    if self.d.xpath('//*[@text="日浇水量"]').exists:
+                        short_wait()
+                        self.d.press("back")
+                    # 如果不小心进入了合种，硬编码关闭
+                    if self.d.xpath('//*[@text="发起合种"]').exists:
+                        short_wait()
+                        self.d.press("back")
+                    # 如果不小心进入了成就,硬编码关闭
+                    if self.d.xpath('//*[@text="进入地图"]').exists:
+                        short_wait()
+                        self.d.press("back")
                 else:
                     logging.error(f"能量收集页面上的第{m}个按钮定位不到")
                     return
-                # 2019年双11活动入口，硬编码关闭
-                if self.d.xpath('//*[@text="关闭蒙层"]').exists:
-                    short_wait()
-                    self.d.xpath('//*[@text="关闭蒙层"]').click()
-                # 如果不小心进入了合种，硬编码关闭
-                if self.d.xpath('//*[@text="发起合种"]').exists:
-                    short_wait()
-                    self.d.press("back")
-                # 如果不小心进入了公益林，硬编码关闭
-                if self.d.xpath('//*[@text="日浇水量"]').exists:
-                    short_wait()
-                    self.d.press("back")
-                # 如果不小心进入了成就,硬编码关闭
-                if self.d.xpath('//*[@text="进入地图"]').exists:
-                    short_wait()
-                    self.d.press("back")
 
             short_wait()
     else:
@@ -113,7 +113,7 @@ def in_my_friends(self):
         else:
             # TODO 时不时就报定位不到，需要调试
             logging.error(f"能量收集页面上的第{a}个好友定位不到")
-            return
+            continue
         self.d.xpath('//*[@resource-id="J_barrier_free"]/android.widget.Button').wait(5)
         # 收集好友能量
         if self.d.xpath('//*[@resource-id="J_barrier_free"]/android.widget.Button').exists:
