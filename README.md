@@ -84,7 +84,7 @@
 
 - device
 
-  在pc上通过`adb device`来获得
+  在pc上通过`adb devices`来获得
 
   在安卓上写死：`http://0.0.0.0:7912`
 

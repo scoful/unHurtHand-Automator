@@ -5,19 +5,18 @@ def taoBao_platform(self):
     # 打开淘宝
     self.d.app_start("com.taobao.taobao", wait=True)
     time.sleep(20)
-    if self.d.xpath('//*[@text="狂欢开场"]').exists:
-        self.d.xpath('//*[@text="狂欢开场"]').click()
-        time.sleep(2)
-        self.d.press("back")
-        short_wait()
-    else:
-        logging.error("找不到狂欢开场入口！")
-        return
     if self.d.xpath('//*[@text="领红包"]').exists:
         self.d.xpath('//*[@text="领红包"]').click()
     else:
-        logging.error("页面上找不到双11淘宝活动入口！")
-        return
+        if self.d.xpath('//*[@text="狂欢开场"]').exists:
+            self.d.xpath('//*[@text="狂欢开场"]').click()
+            time.sleep(2)
+            self.d.press("back")
+            short_wait()
+        else:
+            logging.error("页面上找不到双11淘宝活动入口！")
+            return
+
     # 等待界面出现完整
     self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').wait(20)
     if self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').exists:
@@ -80,6 +79,9 @@ def taoBao_cat_tasks(self):
         else:
             self.d.press("back")
             time.sleep(1)
+            if self.d.xpath('//*[@text="正在前往会场"]').exists:
+                self.d.press("back")
+                time.sleep(1)
             if self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').exists:
                 self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').click()
     else:

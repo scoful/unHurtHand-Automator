@@ -79,7 +79,6 @@ def zhiFuBao_platform_cat_coins(self):
         time.sleep(5)
         if self.d.xpath('//*[@resource-id="com.alipay.mobile.antui:id/ensure"]').exists:
             self.d.xpath('//*[@resource-id="com.alipay.mobile.antui:id/ensure"]').click()
-        self.d.swipe(self.dWidth / 2, self.dHeight / 2, self.dWidth / 2, 0, 0.2)
         time.sleep(2)
         self.d.press("back")
         if self.d.xpath('//*[@text="关闭"]').exists:
@@ -125,7 +124,6 @@ def zhiFuBao_platform_cat_tasks(self):
     if self.d.xpath('//*[@text="去完成"]').exists:
         self.d.xpath('//*[@text="去完成"]').click()
         time.sleep(3)
-        self.d.swipe(self.dWidth / 2, self.dHeight / 2, self.dWidth / 2, 0, 0.2)
         time.sleep(3)
         self.d.press("back")
         short_wait()
