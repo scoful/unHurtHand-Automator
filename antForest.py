@@ -64,7 +64,7 @@ def collect_energy(self):
                 # 点击收集能量
                 if self.d.xpath('//*[@resource-id="J_barrier_free"]/android.widget.Button[' + str(m) + ']').exists:
                     self.d.xpath('//*[@resource-id="J_barrier_free"]/android.widget.Button[' + str(m) + ']').click()
-                    short_wait()
+                    time.sleep(2)
                     # 2019年双11活动入口，硬编码关闭
                     if self.d.xpath('//*[@text="关闭蒙层"]').exists:
                         short_wait()
