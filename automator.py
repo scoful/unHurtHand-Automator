@@ -26,11 +26,11 @@ class Automator:
             if self.isAntForestOn:
                 ant_forest(self)
             if self.isZhiFuBaoT2019On:
-                zhiFuBao_platform(self)
+                zhi_fu_bao_platform(self)
             if self.isTaoBaoT2019On:
-                taoBao_platform(self)
-        except:
-            logging.error("未知错误！")
+                tao_bao_platform(self)
+        except Exception as result:
+            logging.error(f"未知错误！{result}")
             return
         end_time = datetime.datetime.now()
         time_cost = end_time - start_time
