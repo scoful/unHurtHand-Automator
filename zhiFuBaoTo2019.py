@@ -1,7 +1,7 @@
 from util import *
 
 
-def zhiFuBao_platform(self):
+def zhi_fu_bao_platform(self):
     # 打开支付宝
     self.d.app_start("com.eg.android.AlipayGphone", wait=True)
     # 开app九宫锁
@@ -45,15 +45,15 @@ def zhiFuBao_platform(self):
     if self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').exists:
         while True:
             # 收喵币和升级
-            zhiFuBao_platform_cat_coins(self)
+            zhi_fu_bao_platform_cat_coins(self)
             # 做任务
-            zhiFuBao_platform_cat_tasks(self)
+            zhi_fu_bao_platform_cat_tasks(self)
     else:
         logging.error("双11支付宝活动页面打不开！")
         return
 
 
-def zhiFuBao_platform_cat_coins(self):
+def zhi_fu_bao_platform_cat_coins(self):
     if self.d.xpath('//*[@text="关闭"]').exists:
         self.d.xpath('//*[@text="关闭"]').click()
     time.sleep(1)
@@ -87,7 +87,7 @@ def zhiFuBao_platform_cat_coins(self):
         self.d.xpath('//*[@text="关闭"]').click()
 
 
-def zhiFuBao_platform_cat_tasks(self):
+def zhi_fu_bao_platform_cat_tasks(self):
     # 点击领喵币
     if self.d.xpath('//*[@resource-id="root"]/android.view.View[1]/android.widget.Button[3]').exists:
         self.d.xpath('//*[@resource-id="root"]/android.view.View[1]/android.widget.Button[3]').click()
@@ -101,10 +101,8 @@ def zhiFuBao_platform_cat_tasks(self):
         self.d.xpath('//*[@text="签到"]').click()
         time.sleep(2)
         # 关闭签到提醒页，进入支日历
-        if self.d.xpath(
-                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[2]/android.view.View[1]/android.view.View[3]/android.view.View[1]').exists:
-            self.d.xpath(
-                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[2]/android.view.View[1]/android.view.View[3]/android.view.View[1]').click()
+        if self.d.xpath('//*[@text="开心收下"]').exists:
+            self.d.xpath('//*[@text="开心收下"]').click()
         time.sleep(2)
         if self.d.xpath('//*[@resource-id="com.alipay.mobile.nebula:id/h5_rl_title"]').exists:
             logging.info("进入了支日历")
