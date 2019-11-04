@@ -6,11 +6,11 @@ def tao_bao_platform(self):
     self.d.app_start("com.taobao.taobao", wait=True)
     time.sleep(20)
     if self.d.xpath(
-            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout[1]/android.\
-            widget.FrameLayout[1]/android.widget.ImageView[2]').exists:
+            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout['
+            '1]/android.widget.FrameLayout[1]/android.widget.ImageView[2]').exists:
         self.d.xpath(
-            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout[1]/android.\
-            widget.FrameLayout[1]/android.widget.ImageView[2]').click()
+            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout['
+            '1]/android.widget.FrameLayout[1]/android.widget.ImageView[2]').click()
     else:
         logging.error("页面上找不到双11淘宝活动入口！")
         return
@@ -30,13 +30,13 @@ def tao_bao_platform(self):
 
 def tao_bao_cat_coins(self):
     if self.d.xpath(
-            '//*[@resource-id="com.taobao.taobao:id/layermanager_penetrate_webview_container_id"]/android.widget.\
-            FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.\
-            FrameLayout[1]/android.widget.FrameLayout[3]/android.widget.FrameLayout[1]').exists:
+            '//*[@resource-id="com.taobao.taobao:id/layermanager_penetrate_webview_container_id"]/android.widget'
+            '.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout['
+            '1]/android.widget.FrameLayout[3]/android.widget.FrameLayout[1]').exists:
         self.d.xpath(
-            '//*[@resource-id="com.taobao.taobao:id/layermanager_penetrate_webview_container_id"]/android.widget.\
-            FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.\
-            FrameLayout[1]/android.widget.FrameLayout[3]/android.widget.FrameLayout[1]').click()
+            '//*[@resource-id="com.taobao.taobao:id/layermanager_penetrate_webview_container_id"]/android.widget'
+            '.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout[1]/android.widget.FrameLayout['
+            '1]/android.widget.FrameLayout[3]/android.widget.FrameLayout[1]').click()
     time.sleep(1)
     # 收喵币
     self.d.click(0.498, 0.682)
@@ -83,7 +83,6 @@ def tao_bao_cat_tasks(self):
                 time.sleep(1)
             if self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').exists:
                 self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').click()
-    # TODO 待验证功能
     elif self.d.xpath('//*[@text="去签到"]').exists:
         self.d.xpath('//*[@text="去签到"]').click()
         time.sleep(10)
@@ -92,8 +91,18 @@ def tao_bao_cat_tasks(self):
             short_wait()
             if self.d.xpath('//*[@text="签到"]').exists:
                 self.d.xpath('//*[@text="签到"]').click()
+        elif self.d.xpath('//*[@text="领取奖励"]').exists:
+            self.d.xpath('//*[@text="领取奖励"]').click()
+            short_wait()
+            if self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[2]/android.view.View[4]').\
+                    exists:
+                self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[2]/android.view.View[4]').\
+                    click()
         time.sleep(1)
         self.d.press("back")
+        time.sleep(1)
+        if self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').exists:
+            self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').click()
     else:
         time.sleep(1)
         if self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').exists:
