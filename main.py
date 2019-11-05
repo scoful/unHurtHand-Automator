@@ -25,10 +25,12 @@ if __name__ == '__main__':
     is_ant_forest_on = False
     # 是否开启支付宝app2019双11活动自动任务
     is_zhi_fu_bao_to_2019_on = False
-    # 是否只开启淘宝app2019双11活动自动任务
+    # 是否开启淘宝app2019双11活动自动任务
     is_tao_bao_to_2019_on = True
+    # 是否开启支付宝app领积分自动任务
+    is_zhi_fu_bao_gain_points_on = False
 
     instance = Automator(device, is_app_lock, lock_points, is_ant_forest_on, is_zhi_fu_bao_to_2019_on,
-                         is_tao_bao_to_2019_on)
+                         is_tao_bao_to_2019_on, is_zhi_fu_bao_gain_points_on)
     # 启动脚本。
     instance.start()
