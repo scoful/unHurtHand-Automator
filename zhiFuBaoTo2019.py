@@ -8,32 +8,6 @@ def zhi_fu_bao_platform(self):
     if self.isAppLock:
         self.d.swipe_points(self.lockPoints, 0.2)
         short_wait()
-    '''
-    # 搜索框点击
-    if self.d.xpath('//*[@resource-id="com.alipay.mobile.base.commonbiz:id/home_title_search_button"]').exists:
-        self.d.xpath('//*[@resource-id="com.alipay.mobile.base.commonbiz:id/home_title_search_button"]').click()
-        short_wait()
-    else:
-        logging.error("搜索框定位不到")
-        return
-    # 输入《双11》搜索
-    self.d.xpath('//*[@resource-id="com.alipay.mobile.antui:id/search_bg"]').set_text("双11")
-    short_wait()
-    # 点击搜索按钮
-    if self.d.xpath('//*[@text="搜索"]').exists:
-        self.d.xpath('//*[@text="搜索"]').click()
-        short_wait()
-    else:
-        logging.error("搜索按钮定位不到")
-        return
-    # 进入搜索结果
-    if self.d.xpath('//*[@text="点击进入"]').exists:
-        short_wait()
-        self.d.xpath('//*[@text="点击进入"]').click()
-    else:
-        logging.error("双11搜索结果的点击进入字样定位不到")
-        return
-    '''
     time.sleep(20)
     if self.d.xpath('//*[@resource-id="com.alipay.android.phone.openplatform:id/home_advertisement"]').exists:
         self.d.xpath('//*[@resource-id="com.alipay.android.phone.openplatform:id/home_advertisement"]').click()
@@ -73,16 +47,6 @@ def zhi_fu_bao_platform_cat_coins(self):
         logging.error("升级领红包的位置定位不到")
         return
     time.sleep(2)
-    # 逛店有机会得喵币
-    if self.d.xpath('//*[@text="逛店有机会得喵币"]').exists:
-        self.d.xpath('//*[@text="逛店有机会得喵币"]').click()
-        time.sleep(5)
-        if self.d.xpath('//*[@resource-id="com.alipay.mobile.antui:id/ensure"]').exists:
-            self.d.xpath('//*[@resource-id="com.alipay.mobile.antui:id/ensure"]').click()
-        time.sleep(2)
-        self.d.press("back")
-        if self.d.xpath('//*[@text="关闭"]').exists:
-            self.d.xpath('//*[@text="关闭"]').click()
     if self.d.xpath('//*[@text="关闭"]').exists:
         self.d.xpath('//*[@text="关闭"]').click()
 
