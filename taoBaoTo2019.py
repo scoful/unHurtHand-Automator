@@ -1,10 +1,48 @@
 from util import *
 
 
+def open_red_pack(self):
+    # 先拆每日红包
+    # 搜索框点击
+    if self.d.xpath('//*[@content-desc="搜索"]').exists:
+        self.d.xpath('//*[@content-desc="搜索"]').click()
+        short_wait()
+    else:
+        logging.error("搜索框定位不到")
+        return
+    # 输入《https://s.click.taobao.com/i8ds4yv》搜索
+    self.d.xpath('//*[@resource-id="com.taobao.taobao:id/searchEdit"]').set_text("https://s.click.taobao.com/i8ds4yv")
+    short_wait()
+    # 点击搜索按钮
+    if self.d.xpath('//*[@text="搜索"]').exists:
+        self.d.xpath('//*[@text="搜索"]').click()
+        short_wait()
+    else:
+        logging.error("搜索按钮定位不到")
+        return
+    time.sleep(6)
+    while not self.d.xpath('//*[@text="分享邀好友，继续开宝箱"]').exists:
+        if self.d.xpath('//*[@text="拆今日红包"]').exists:
+            self.d.xpath('//*[@text="拆今日红包"]').click()
+            short_wait()
+        if self.d.xpath('//*[@text="再拆一次"]').exists:
+            self.d.xpath('//*[@text="再拆一次"]').click()
+            short_wait()
+    self.d.xpath('//*[@content-desc="转到上一层级"]').click()
+    short_wait()
+    self.d.press("back")
+    short_wait()
+    self.d.xpath('//*[@resource-id="com.taobao.taobao:id/btn_go_back"]').click()
+
+
 def tao_bao_platform(self):
     # 打开淘宝
     self.d.app_start("com.taobao.taobao", wait=True)
     time.sleep(20)
+
+    open_red_pack(self)
+
+    # 更新最新版淘宝app，定位首页右上角的入口
     if self.d.xpath(
             '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout['
             '1]/android.widget.FrameLayout[1]/android.widget.ImageView[2]').exists:
@@ -91,16 +129,24 @@ def tao_bao_cat_tasks(self):
             short_wait()
             if self.d.xpath('//*[@text="签到"]').exists:
                 self.d.xpath('//*[@text="签到"]').click()
-        elif self.d.xpath('//*[@text="领取奖励"]').exists:
-            self.d.xpath('//*[@text="领取奖励"]').click()
+        elif self.d.xpath('//*[@resource-id="content"]/android.view.View[8]/android.view.View[7]/android.view.View[1]') \
+                .exists:
+            self.d.xpath('//*[@resource-id="content"]/android.view.View[8]/android.view.View[7]/android.view.View[1]') \
+                .click()
             short_wait()
-            if self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[2]/android.view.View[4]').\
-                    exists:
-                self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[2]/android.view.View[4]').\
-                    click()
+            if self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[2]/android.view.View[4]') \
+                    .exists:
+                self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[2]/android.view.View[4]') \
+                    .click()
         time.sleep(1)
         self.d.press("back")
         time.sleep(1)
+        if self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').exists:
+            self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').click()
+    elif self.d.xpath('//*[@text="去查看"]').exists:
+        short_wait()
+        self.d.press("back")
+        short_wait()
         if self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').exists:
             self.d.xpath('//*[@resource-id="taskBottomSheet"]/android.widget.Button[1]').click()
     else:
