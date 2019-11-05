@@ -3,11 +3,12 @@ import uiautomator2 as u2
 from antForest import *
 from taoBaoTo2019 import *
 from zhiFuBaoTo2019 import *
+from zhiFuBaoGainPoints import *
 
 
 class Automator:
     def __init__(self, device: str, is_app_lock: False, lock_points: [], is_ant_forest_on: False,
-                 is_zhi_fu_bao_to_2019_on: False, is_tao_bao_to_2019_on: False):
+                 is_zhi_fu_bao_to_2019_on: False, is_tao_bao_to_2019_on: False, is_zhi_fu_bao_gain_points_on: False):
         self.d = u2.connect(device)
         self.dWidth, self.dHeight = self.d.window_size()
         self.isAppLock = is_app_lock
@@ -16,6 +17,7 @@ class Automator:
         self.isAntForestOn = is_ant_forest_on
         self.isZhiFuBaoT2019On = is_zhi_fu_bao_to_2019_on
         self.isTaoBaoT2019On = is_tao_bao_to_2019_on
+        self.isZhiFuBaoGainPointsOn = is_zhi_fu_bao_gain_points_on
 
     def start(self):
         """
@@ -29,6 +31,8 @@ class Automator:
                 zhi_fu_bao_platform(self)
             if self.isTaoBaoT2019On:
                 tao_bao_platform(self)
+            if self.isZhiFuBaoGainPointsOn:
+                gain_points(self)
         except Exception as result:
             logging.error(f"未知错误！{result}")
             return
