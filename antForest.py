@@ -34,7 +34,7 @@ def ant_forest(self):
         logging.error("蚂蚁森林搜索结果的进入字样定位不到")
         return
     # 收集自己的能量
-    # TODO 验证一下，到底多少个按钮才需要反复几次，是否可以做成按需判断
+    # 循环3次，保证多余的能量也能收集到
     for i in range(3):
         collect_energy(self)
     # 收集完滚动到底部，点击查看更多好友，进入
