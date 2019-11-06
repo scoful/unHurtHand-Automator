@@ -1,6 +1,37 @@
 from util import *
 
 
+def tao_bao_platform(self):
+    # 打开淘宝
+    self.d.app_start("com.taobao.taobao", wait=True)
+    time.sleep(20)
+
+    open_red_pack(self)
+
+    # 更新最新版淘宝app，定位首页右上角的入口
+    if self.d.xpath(
+            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout['
+            '1]/android.widget.FrameLayout[1]/android.widget.ImageView[2]').exists:
+        self.d.xpath(
+            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout['
+            '1]/android.widget.FrameLayout[1]/android.widget.ImageView[2]').click()
+    else:
+        logging.error("页面上找不到双11淘宝活动入口！")
+        return
+
+    # 等待界面出现完整
+    self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').wait(20)
+    if self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').exists:
+        while True:
+            # 收喵币和升级
+            tao_bao_cat_coins(self)
+            # 做任务
+            tao_bao_cat_tasks(self)
+    else:
+        logging.error("双11淘宝活动页面打不开！")
+        return
+
+
 def open_red_pack(self):
     # 先拆每日红包
     # 搜索框点击
@@ -33,37 +64,6 @@ def open_red_pack(self):
     self.d.press("back")
     short_wait()
     self.d.xpath('//*[@resource-id="com.taobao.taobao:id/btn_go_back"]').click()
-
-
-def tao_bao_platform(self):
-    # 打开淘宝
-    self.d.app_start("com.taobao.taobao", wait=True)
-    time.sleep(20)
-
-    open_red_pack(self)
-
-    # 更新最新版淘宝app，定位首页右上角的入口
-    if self.d.xpath(
-            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout['
-            '1]/android.widget.FrameLayout[1]/android.widget.ImageView[2]').exists:
-        self.d.xpath(
-            '//*[@resource-id="com.taobao.taobao:id/sv_search_view"]/android.widget.FrameLayout['
-            '1]/android.widget.FrameLayout[1]/android.widget.ImageView[2]').click()
-    else:
-        logging.error("页面上找不到双11淘宝活动入口！")
-        return
-
-    # 等待界面出现完整
-    self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').wait(20)
-    if self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').exists:
-        while True:
-            # 收喵币和升级
-            tao_bao_cat_coins(self)
-            # 做任务
-            tao_bao_cat_tasks(self)
-    else:
-        logging.error("双11淘宝活动页面打不开！")
-        return
 
 
 def tao_bao_cat_coins(self):
