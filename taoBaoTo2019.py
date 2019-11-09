@@ -124,12 +124,8 @@ def tao_bao_cat_tasks(self):
     elif self.d.xpath('//*[@text="去签到"]').exists:
         self.d.xpath('//*[@text="去签到"]').click()
         time.sleep(10)
-        if self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[1]').exists:
-            self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[1]').click()
-            short_wait()
-            if self.d.xpath('//*[@text="签到"]').exists:
-                self.d.xpath('//*[@text="签到"]').click()
-        elif self.d.xpath('//*[@resource-id="content"]/android.view.View[8]/android.view.View[7]/android.view.View[1]') \
+
+        if self.d.xpath('//*[@resource-id="content"]/android.view.View[8]/android.view.View[7]/android.view.View[1]') \
                 .exists:
             self.d.xpath('//*[@resource-id="content"]/android.view.View[8]/android.view.View[7]/android.view.View[1]') \
                 .click()
@@ -138,6 +134,11 @@ def tao_bao_cat_tasks(self):
                     .exists:
                 self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[2]/android.view.View[4]') \
                     .click()
+        elif self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[1]').exists:
+            self.d.xpath('//*[@resource-id="app"]/android.view.View[1]/android.view.View[1]').click()
+            short_wait()
+            if self.d.xpath('//*[@text="签到"]').exists:
+                self.d.xpath('//*[@text="签到"]').click()
         time.sleep(1)
         self.d.press("back")
         time.sleep(1)
