@@ -36,11 +36,10 @@ class Automator:
         except Exception as result:
             logging.error(f"未知错误！{result}")
             return
+            # 结束关闭支付宝
+            self.d.app_stop("com.eg.android.AlipayGphone")
+            # 结束关闭淘宝
+            self.d.app_stop("com.taobao.taobao")
         end_time = datetime.datetime.now()
         time_cost = end_time - start_time
-
-        # 结束关闭支付宝
-        self.d.app_stop("com.eg.android.AlipayGphone")
-        # 结束关闭淘宝
-        self.d.app_stop("com.taobao.taobao")
         logging.info(f"结束，总耗时：{time_cost}")
