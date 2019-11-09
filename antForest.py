@@ -47,6 +47,9 @@ def ant_forest(self):
     # 进入所有好友收集能量
     in_my_friends(self)
 
+    # 结束关闭支付宝
+    self.d.app_stop("com.eg.android.AlipayGphone")
+
 
 def collect_energy(self):
     self.d.xpath('//*[@resource-id="J_barrier_free"]/android.widget.Button').wait(20)
