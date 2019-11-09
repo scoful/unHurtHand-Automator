@@ -75,25 +75,18 @@ def zhi_fu_bao_platform_cat_tasks(self):
             self.d.press("back")
             logging.info("退出支日历")
         time.sleep(1)
-
-    if self.d.xpath('//*[@text="去浏览"]').exists:
+        if self.d.xpath('//*[@text="关闭"]').exists:
+            self.d.xpath('//*[@text="关闭"]').click()
+    elif self.d.xpath('//*[@text="去浏览"]').exists:
         self.d.xpath('//*[@text="去浏览"]').click()
-        time.sleep(3)
+        time.sleep(5)
         self.d.press("back")
         short_wait()
         if self.d.xpath('//*[@text="关闭"]').exists:
             self.d.xpath('//*[@text="关闭"]').click()
-    if self.d.xpath('//*[@text="去完成"]').exists:
-        self.d.xpath('//*[@text="去完成"]').click()
-        time.sleep(3)
-        time.sleep(3)
-        self.d.press("back")
-        short_wait()
-        if self.d.xpath('//*[@text="关闭"]').exists:
-            self.d.xpath('//*[@text="关闭"]').click()
-    if self.d.xpath('//*[@text="去浇水"]').exists:
+    elif self.d.xpath('//*[@text="去浇水"]').exists:
         self.d.xpath('//*[@text="去浇水"]').click()
-        time.sleep(3)
+        time.sleep(5)
         self.d(scrollable=True).scroll.to(description="查看更多好友")
         if self.d.xpath("//*[contains(@text, '查看更多好友')]").exists:
             self.d.xpath("//*[contains(@text, '查看更多好友')]").click()
@@ -116,5 +109,17 @@ def zhi_fu_bao_platform_cat_tasks(self):
         short_wait()
         self.d.press("back")
         short_wait()
+        if self.d.xpath('//*[@text="关闭"]').exists:
+            self.d.xpath('//*[@text="关闭"]').click()
+    elif self.d.xpath('//*[@text="去完成"]').exists:
+        self.d.xpath('//*[@text="去完成"]').click()
+        time.sleep(5)
+        self.d.press("back")
+        short_wait()
+        if self.d.xpath('//*[@text="关闭"]').exists:
+            self.d.xpath('//*[@text="关闭"]').click()
+    elif self.d.xpath('//*[@text="关闭"]').exists:
+        self.d.xpath('//*[@text="关闭"]').click()
+    time.sleep(5)
     if self.d.xpath('//*[@text="关闭"]').exists:
         self.d.xpath('//*[@text="关闭"]').click()
