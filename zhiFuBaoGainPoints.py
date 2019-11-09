@@ -45,3 +45,6 @@ def gain_points(self):
         short_wait()
         self.d.xpath('//*[@text="点击领取"]').click()
         short_wait()
+
+    # 结束关闭支付宝
+    self.d.app_stop("com.eg.android.AlipayGphone")
