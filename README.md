@@ -44,7 +44,7 @@
   - Android 调试桥 (adb)，https://developer.android.google.cn/studio/command-line/adb
   - 官方下载地址，[adb下载](https://developer.android.google.cn/studio/releases/platform-tools.html)，下载后，把解压后的文件夹的路径添加到环境变量的 `Path` 中，方便全局调用
 
-- 以上都安装后，打开 `CMD` 或者 `Powershell` 或是其他任何终端，执行以下命令，安装python依赖：
+- 以上都安装后，下载本项目代码到本地，进入根目录，打开 `CMD` 或者 `Powershell` 或是其他任何终端，执行以下命令，安装python依赖：
 
   ```python
   # 打开终端
@@ -61,7 +61,8 @@
   adb devices
   ```
 
-- adb 连接后，执行以下命令在手机安装 ATX 应用，包含httprpc服务的apk到手机，`atx-agent, minicap, minitouch`，具体介绍可以看，[uiautomator2项目](https://github.com/openatx/uiautomator2)
+- adb 连接后，执行以下命令在手机安装 ATX 应用，包含httprpc服务的apk到手机，`atx-agent, minicap, minitouch`，具体介绍可以看，[uiautomator2项目](https://github.com/openatx/uiautomator2)，安装之前打开手机的开发者选项、
+USB调试、USB安装等功能
 
   ```python
   python3 -m uiautomator2 init
