@@ -63,9 +63,10 @@ def collect_energy(self):
         else:
             # 点击收集能量
             elem.click()
-            # 2019年双11活动入口，硬编码关闭
-            if self.d.xpath('//*[@text="关闭蒙层"]').exists:
-                self.d.xpath('//*[@text="关闭蒙层"]').click()
+            # 新树种入口，硬编码关闭
+            if self.d.xpath('//*[@text="环保项目"]').exists:
+                short_wait()
+                self.d.press("back")
 
 
 def in_my_friends(self):
