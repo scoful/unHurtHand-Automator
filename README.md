@@ -115,3 +115,13 @@ USB调试、USB安装等功能
 - 代码优化
 - 安卓端自动运行python脚本
 - Q-Q
+
+
+## Discussing
+- [在github上提问](https://github.com/scoful/unHurtHand-Automator/issues/new "在github上提问")
+
+- wechat：scoful
+
+- QQ：1269717999
+
+- email：1269717999@qq.com
