@@ -76,12 +76,18 @@ def in_my_friends(self):
     self.d(scrollable=True).scroll.toBeginning()
     time.sleep(5)
     a = 1
-    while self.d.xpath('//*[@resource-id="J_rank_list_append"]/android.view.View[' + str(a) + ']').exists:
+    while self.d.xpath(
+            '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[3]/android.view.View[' + str(
+                a) + ']').exists:
         short_wait()
         logging.info(f"第{a}个")
         # 依次点进好友页面
-        if self.d.xpath('//*[@resource-id="J_rank_list_append"]/android.view.View[' + str(a) + ']').exists:
-            self.d.xpath('//*[@resource-id="J_rank_list_append"]/android.view.View[' + str(a) + ']').click()
+        if self.d.xpath(
+                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[3]/android.view.View[' + str(
+                    a) + ']').exists:
+            self.d.xpath(
+                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[3]/android.view.View[' + str(
+                    a) + ']').click()
         else:
             # TODO 时不时就报定位不到，需要调试
             logging.error(f"能量收集页面上的第{a}个好友定位不到")
@@ -92,10 +98,9 @@ def in_my_friends(self):
             collect_energy(self)
             short_wait()
             self.d.press("back")
-        if a % 8 == 0:
-            self.d.swipe_ext("up", scale=0.5)
-            short_wait()
         a = a + 1
+        self.d.swipe_ext("up", scale=0.1)
+        short_wait()
         time.sleep(2)
 
     logging.info(f"{a}个好友收集完毕")
