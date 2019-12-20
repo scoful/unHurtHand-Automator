@@ -9,6 +9,10 @@ def ant_forest(self):
         self.d.swipe_points(self.lockPoints, 0.2)
         short_wait()
     time.sleep(20)
+    # 先点击去首页
+    if self.d.xpath('//*[@text="首页"]').exists:
+        self.d.xpath('//*[@text="首页"]').click()
+    short_wait()
     # 搜索框点击
     if self.d.xpath('//*[@resource-id="com.alipay.mobile.base.commonbiz:id/home_title_search_button"]').exists:
         self.d.xpath('//*[@resource-id="com.alipay.mobile.base.commonbiz:id/home_title_search_button"]').click()
@@ -63,10 +67,13 @@ def collect_energy(self):
         else:
             # 点击收集能量
             elem.click()
-            # 新树种入口，硬编码关闭
-            if self.d.xpath('//*[@text="环保项目"]').exists:
+            time.sleep(3)
+            # 新活动入口，硬编码关闭
+            if self.d.xpath('//*[@text="推荐你选择绿色出行，为地球节省碳排放"]').exists:
                 short_wait()
                 self.d.press("back")
+                if self.d.xpath('//*[@text="我知道了"]').exists:
+                    self.d.xpath('//*[@text="我知道了"]').click()
 
 
 def in_my_friends(self):
@@ -74,19 +81,18 @@ def in_my_friends(self):
     self.d(scrollable=True).scroll.to(description="没有更多了")
     # 再回到顶部，从上往下走
     self.d(scrollable=True).scroll.toBeginning()
-    time.sleep(5)
     a = 1
     while self.d.xpath(
-            '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[3]/android.view.View[' + str(
+            '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[2]/android.view.View[' + str(
                 a) + ']').exists:
         short_wait()
         logging.info(f"第{a}个")
         # 依次点进好友页面
         if self.d.xpath(
-                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[3]/android.view.View[' + str(
+                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[2]/android.view.View[' + str(
                     a) + ']').exists:
             self.d.xpath(
-                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[3]/android.view.View[' + str(
+                '//*[@resource-id="__react-content"]/android.view.View[1]/android.view.View[2]/android.view.View[' + str(
                     a) + ']').click()
         else:
             # TODO 时不时就报定位不到，需要调试
@@ -100,7 +106,6 @@ def in_my_friends(self):
             self.d.press("back")
         a = a + 1
         self.d.swipe_ext("up", scale=0.1)
-        short_wait()
-        time.sleep(2)
+        time.sleep(3)
 
     logging.info(f"{a}个好友收集完毕")
