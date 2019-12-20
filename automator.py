@@ -2,8 +2,8 @@ import uiautomator2 as u2
 
 from antForest import *
 from taoBaoTo2019 import *
-from zhiFuBaoTo2019 import *
 from zhiFuBaoGainPoints import *
+from zhiFuBaoTo2019 import *
 
 
 class Automator:
@@ -25,14 +25,14 @@ class Automator:
         """
         start_time = datetime.datetime.now()
         try:
+            if self.isZhiFuBaoGainPointsOn:
+                gain_points(self)
             if self.isAntForestOn:
                 ant_forest(self)
             if self.isZhiFuBaoT2019On:
                 zhi_fu_bao_platform(self)
             if self.isTaoBaoT2019On:
                 tao_bao_platform(self)
-            if self.isZhiFuBaoGainPointsOn:
-                gain_points(self)
         except Exception as result:
             logging.error(f"未知错误！{result}")
             return
