@@ -9,6 +9,10 @@ def gain_points(self):
         self.d.swipe_points(self.lockPoints, 0.2)
         short_wait()
     time.sleep(20)
+    # 先点击去首页
+    if self.d.xpath('//*[@text="首页"]').exists:
+        self.d.xpath('//*[@text="首页"]').click()
+    short_wait()
     # 搜索框点击
     if self.d.xpath('//*[@resource-id="com.alipay.mobile.base.commonbiz:id/home_title_search_button"]').exists:
         self.d.xpath('//*[@resource-id="com.alipay.mobile.base.commonbiz:id/home_title_search_button"]').click()
@@ -33,7 +37,7 @@ def gain_points(self):
     else:
         logging.error("领积分搜索结果的进入字样定位不到")
         return
-    time.sleep(10)
+    time.sleep(15)
     if self.d.xpath('//*[@text="领积分"]').exists:
         short_wait()
         self.d.xpath('//*[@text="领积分"]').click()
