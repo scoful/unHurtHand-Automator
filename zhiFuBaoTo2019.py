@@ -9,22 +9,37 @@ def zhi_fu_bao_platform(self):
         self.d.swipe_points(self.lockPoints, 0.2)
         short_wait()
     time.sleep(20)
+    # 先点击去首页
+    if self.d.xpath('//*[@text="首页"]').exists:
+        self.d.xpath('//*[@text="首页"]').click()
+    short_wait()
     if self.d.xpath('//*[@resource-id="com.alipay.android.phone.openplatform:id/home_advertisement"]').exists:
         self.d.xpath('//*[@resource-id="com.alipay.android.phone.openplatform:id/home_advertisement"]').click()
     else:
         logging.error("双11支付宝活动找不到入口")
         return
     # 等待界面出现完整
-    self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').wait(20)
-    if self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').exists:
+    # self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').wait(20)
+    self.d(text="支付记录").wait(20)
+    # if self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').exists:
+    if self.d(text="支付记录").exists:
         while True:
             # 收喵币和升级
-            zhi_fu_bao_platform_cat_coins(self)
+            # zhi_fu_bao_platform_cat_coins(self)
             # 做任务
-            zhi_fu_bao_platform_cat_tasks(self)
+            # zhi_fu_bao_platform_cat_tasks(self)
+            # 长按获得翻倍豆
+            zhi_fu_bao_platform_play_red_bag(self)
     else:
         logging.error("双11支付宝活动页面打不开！")
         return
+
+
+def zhi_fu_bao_platform_play_red_bag(self):
+    time.sleep(5)
+    if self.d(text="继续玩").exists:
+        self.d(text="继续玩").click()
+    self.d.long_click(0.5, 0.5)
 
 
 def zhi_fu_bao_platform_cat_coins(self):
