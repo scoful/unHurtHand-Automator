@@ -69,11 +69,17 @@ def collect_energy(self):
             elem.click()
             time.sleep(3)
             # 新活动入口，硬编码关闭
-            if self.d.xpath('//*[@text="推荐你选择绿色出行，为地球节省碳排放"]').exists:
+            if self.d.xpath('//*[@text="亲爱的scoful，距离你回家还有"]').exists:
                 short_wait()
-                self.d.press("back")
-                if self.d.xpath('//*[@text="我知道了"]').exists:
-                    self.d.xpath('//*[@text="我知道了"]').click()
+                self.d.click(0.928, 0.207)
+                short_wait()
+                if self.d(text="明日再来").exists:
+                    self.d.press("back")
+                if self.d.xpath('//*[@text="抽取上上签"]').exists:
+                    self.d.xpath('//*[@text="抽取上上签"]').click()
+                    time.sleep(3)
+                    self.d.press("back")
+
 
 
 def in_my_friends(self):
