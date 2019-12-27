@@ -16,13 +16,13 @@ def zhi_fu_bao_platform(self):
     if self.d.xpath('//*[@resource-id="com.alipay.android.phone.openplatform:id/home_advertisement"]').exists:
         self.d.xpath('//*[@resource-id="com.alipay.android.phone.openplatform:id/home_advertisement"]').click()
     else:
-        logging.error("双11支付宝活动找不到入口")
+        logging.error("首页活动找不到入口")
         return
     # 等待界面出现完整
     # self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').wait(20)
-    self.d(text="支付记录").wait(20)
+    self.d(text="活动攻略").wait(20)
     # if self.d.xpath('//*[@text="双11合伙人，全民开喵铺，瓜分20亿红包"]').exists:
-    if self.d(text="支付记录").exists:
+    if self.d(text="活动攻略").exists:
         while True:
             # 收喵币和升级
             # zhi_fu_bao_platform_cat_coins(self)
